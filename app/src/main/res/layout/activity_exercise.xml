@@ -57,6 +57,7 @@
             android:background="@drawable/color_accent_background">
 
             <TextView
+                android:id="@+id/tvRemainingTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
