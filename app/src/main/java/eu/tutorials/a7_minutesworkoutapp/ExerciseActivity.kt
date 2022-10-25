@@ -10,6 +10,8 @@ class ExerciseActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExerciseBinding
     private var restTimer: CountDownTimer? = null
     private var exerciseTimer: CountDownTimer? = null
+    private var currentExercisePosition: Int = -1
+    private lateinit var exercisesList: ArrayList<ExerciseModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -21,6 +23,8 @@ class ExerciseActivity : AppCompatActivity() {
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        exercisesList = Constants.defaultExerciseList()
 
         startRestTimer()
     }
@@ -34,6 +38,7 @@ class ExerciseActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 Toast.makeText(this@ExerciseActivity, "finish", Toast.LENGTH_SHORT).show()
+                currentExercisePosition = 0
                 startExerciseTimer()
             }
         }
@@ -48,6 +53,7 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                currentExercisePosition++
                 exerciseTimer?.start()
             }
         }
