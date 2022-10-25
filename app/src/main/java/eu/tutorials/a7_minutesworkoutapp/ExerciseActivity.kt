@@ -53,12 +53,23 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                currentExercisePosition++
-                exerciseTimer?.start()
+                if (currentExercisePosition <= exercisesList.size - 1) {
+                    currentExercisePosition++
+                    updateExerciseUI()
+                    exerciseTimer?.start()
+                }
+                else {
+                    Toast.makeText(this@ExerciseActivity, "DONE ALL EXERCISE", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         exerciseTimer?.start()
+    }
+
+    private fun updateExerciseUI() {
+        val currentExercise = exercisesList.get(currentExercisePosition)
+        binding.ivExercise.setImageResource(currentExercise.imageRes)
     }
 
     private fun updateTimeRemainingUI(remainingTimeInSecs: Int) {

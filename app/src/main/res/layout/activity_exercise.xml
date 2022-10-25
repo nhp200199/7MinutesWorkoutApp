@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
@@ -22,17 +22,22 @@
         android:id="@+id/tvGettingStarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
         android:text="Get Started"
+        android:textColor="@color/colorAccent"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/ivExercise" />
 
     <FrameLayout
+        android:id="@+id/flTimerContainer"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/item_color_accent_border_ripple_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGettingStarted">
@@ -43,18 +48,18 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_gravity="center"
+            android:background="@drawable/color_gray_ring"
             android:max="10"
             android:progress="10"
-            android:rotation="-90"
-            android:background="@drawable/color_gray_ring"
-            android:progressDrawable="@drawable/color_accent_ring"/>
+            android:progressDrawable="@drawable/color_accent_ring"
+            android:rotation="-90" />
 
         <LinearLayout
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:background="@drawable/color_accent_background">
+            android:background="@drawable/color_accent_background"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/tvRemainingTime"
@@ -68,4 +73,17 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/ivExercise"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_jumping_jacks"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/tvGettingStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
