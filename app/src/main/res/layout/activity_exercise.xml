@@ -61,9 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@drawable/color_accent_ring"
                 android:text="hello"
-                android:textColor="@color/white"
-                android:background="@drawable/color_accent_ring"/>
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
