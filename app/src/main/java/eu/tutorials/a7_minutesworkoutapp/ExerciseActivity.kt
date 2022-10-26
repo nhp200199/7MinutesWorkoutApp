@@ -3,8 +3,11 @@ package eu.tutorials.a7_minutesworkoutapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import eu.tutorials.a7_minutesworkoutapp.databinding.ActivityExerciseBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ExerciseActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExerciseBinding
@@ -12,6 +15,7 @@ class ExerciseActivity : AppCompatActivity() {
     private var exerciseTimer: CountDownTimer? = null
     private var currentExercisePosition: Int = -1
     private lateinit var exercisesList: ArrayList<ExerciseModel>
+    private lateinit var tts: TextToSpeech
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -22,6 +26,19 @@ class ExerciseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
+        }
+
+        tts = TextToSpeech(this) {
+            if (it == TextToSpeech.SUCCESS) {
+                val result = tts!!.setLanguage(Locale.US)
+
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(this@ExerciseActivity, "Text To Speech not available", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else {
+                Toast.makeText(this@ExerciseActivity, "Text To Speech init fails", Toast.LENGTH_SHORT).show()
+            }
         }
 
         exercisesList = Constants.defaultExerciseList()
@@ -53,8 +70,8 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                currentExercisePosition++
                 if (currentExercisePosition <= exercisesList.size - 1) {
-                    currentExercisePosition++
                     updateExerciseUI()
                     exerciseTimer?.start()
                 }
@@ -68,8 +85,10 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun updateExerciseUI() {
-        val currentExercise = exercisesList.get(currentExercisePosition)
+        val currentExercise = exercisesList[currentExercisePosition]
         binding.ivExercise.setImageResource(currentExercise.imageRes)
+
+        tts.speak(currentExercise.name, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     private fun updateTimeRemainingUI(remainingTimeInSecs: Int) {
@@ -80,6 +99,8 @@ class ExerciseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         clearTimer()
+        tts.stop()
+        tts.shutdown()
     }
 
     private fun clearTimer() {
