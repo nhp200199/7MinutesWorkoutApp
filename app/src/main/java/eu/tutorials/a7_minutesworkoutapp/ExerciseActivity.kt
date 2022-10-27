@@ -1,5 +1,6 @@
 package eu.tutorials.a7_minutesworkoutapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -94,7 +95,8 @@ class ExerciseActivity : AppCompatActivity() {
                     exerciseTimer?.start()
                 }
                 else {
-                    Toast.makeText(this@ExerciseActivity, "DONE ALL EXERCISE", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@ExerciseActivity, FinishActivity::class.java))
+                    finish()
                 }
             }
         }
