@@ -1,5 +1,6 @@
 package eu.tutorials.a7_minutesworkoutapp
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.tutorials.a7_minutesworkoutapp.databinding.ActivityExerciseBinding
+import eu.tutorials.a7_minutesworkoutapp.databinding.DialogExerciseCancellationConfirmationBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,7 +30,8 @@ class ExerciseActivity : AppCompatActivity() {
         binding.toolbar.title = "Exercise"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
+//            onBackPressed()
+            showConfirmationDialog()
         }
 
         tts = TextToSpeech(this) {
@@ -53,6 +56,22 @@ class ExerciseActivity : AppCompatActivity() {
             this.adapter = madapter
             layoutManager = LinearLayoutManager(this@ExerciseActivity, LinearLayoutManager.HORIZONTAL, false)
         }
+    }
+
+    private fun showConfirmationDialog() {
+        val dialog = Dialog(this)
+        val binding = DialogExerciseCancellationConfirmationBinding.inflate(layoutInflater, null, false)
+        dialog.setContentView(binding.root)
+
+        binding.button2.setOnClickListener {
+            dialog.dismiss()
+        }
+        binding.btnYes.setOnClickListener {
+            dialog.dismiss()
+            onBackPressed()
+        }
+
+        dialog.show()
     }
 
     private fun startRestTimer() {
