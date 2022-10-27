@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import eu.tutorials.a7_minutesworkoutapp.databinding.ActivityExerciseBinding
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,6 +17,7 @@ class ExerciseActivity : AppCompatActivity() {
     private var currentExercisePosition: Int = -1
     private lateinit var exercisesList: ArrayList<ExerciseModel>
     private lateinit var tts: TextToSpeech
+    private var madapter: ExerciseAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -44,10 +46,16 @@ class ExerciseActivity : AppCompatActivity() {
         exercisesList = Constants.defaultExerciseList()
 
         startRestTimer()
+
+        madapter = ExerciseAdapter(exercisesList)
+        binding.rcvExercisesContainer.apply {
+            this.adapter = madapter
+            layoutManager = LinearLayoutManager(this@ExerciseActivity, LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
     private fun startRestTimer() {
-        restTimer = object : CountDownTimer(10000, 1000) {
+        restTimer = object : CountDownTimer(1000, 1000) {
             override fun onTick(remainingTime: Long) {
                 val remainingTimeInSecs = (remainingTime / 1000).toInt()
                 updateTimeRemainingUI(remainingTimeInSecs)
@@ -56,6 +64,9 @@ class ExerciseActivity : AppCompatActivity() {
             override fun onFinish() {
                 Toast.makeText(this@ExerciseActivity, "finish", Toast.LENGTH_SHORT).show()
                 currentExercisePosition = 0
+                exercisesList[currentExercisePosition].isSelected = true
+                madapter?.notifyDataSetChanged()
+                updateExerciseUI()
                 startExerciseTimer()
             }
         }
@@ -70,9 +81,16 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                currentExercisePosition++
-                if (currentExercisePosition <= exercisesList.size - 1) {
+                val previousExercise = currentExercisePosition
+                exercisesList[previousExercise].isSelected = false
+                exercisesList[previousExercise].isCompleted = true
+                madapter?.notifyDataSetChanged()
+
+                if (currentExercisePosition < exercisesList.size - 1) {
+                    currentExercisePosition++
+                    exercisesList[currentExercisePosition].isSelected = true
                     updateExerciseUI()
+                    madapter?.notifyDataSetChanged()
                     exerciseTimer?.start()
                 }
                 else {
