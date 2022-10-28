@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_accent_ring.xml" value="0.5615384615384615" />
+        <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_accent_round_corners.xml" value="0.36822916666666666" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_black_background.xml" value="0.5615384615384615" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_gray_ring.xml" value="0.5615384615384615" />
+        <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_gray_round_corners.xml" value="0.36822916666666666" />
+        <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/color_gray_round_corners_gray_stroke.xml" value="0.36822916666666666" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/item_circle_color_accent.xml" value="0.5703125" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/item_circle_color_gray.xml" value="0.5703125" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/item_circular_color_accent_border.xml" value="0.3140625" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/item_color_accent_border_ripple_background.xml" value="0.346875" />
+        <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/radio_button_tab_selector.xml" value="0.36822916666666666" />
+        <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/drawable/radio_button_text_color_selector.xml" value="0.36822916666666666" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/layout/activity_bmicalculator.xml" value="0.3380208333333333" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/layout/activity_exercise.xml" value="0.33" />
         <entry key="..\:/Personal/CompleteAndroid12Kotlin/7MinutesWorkoutApp/app/src/main/res/layout/activity_finish.xml" value="0.35208333333333336" />

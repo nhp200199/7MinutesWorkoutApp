@@ -2,14 +2,14 @@ package eu.tutorials.a7_minutesworkoutapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import eu.tutorials.a7_minutesworkoutapp.databinding.ActivityBmicalculatorBinding
+import eu.tutorials.a7_minutesworkoutapp.databinding.ActivityBmiCalculatorBinding
 
 class BMICalculatorActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityBmicalculatorBinding
+    private lateinit var binding: ActivityBmiCalculatorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityBmicalculatorBinding.inflate(layoutInflater)
+        binding = ActivityBmiCalculatorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.a.toolbar)
